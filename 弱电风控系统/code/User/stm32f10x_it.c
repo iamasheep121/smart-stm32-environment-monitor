@@ -132,8 +132,10 @@ void PendSV_Handler(void)
   * @param  None
   * @retval None
   */
+extern volatile uint32_t system_time_ms;
 void SysTick_Handler(void)
 {
+	system_time_ms++;
 }
 
 /******************************************************************************/

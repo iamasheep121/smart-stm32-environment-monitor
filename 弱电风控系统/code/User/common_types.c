@@ -8,6 +8,8 @@
 #include "Key.h"
 #include "ADC2.h"
 
+volatile uint32_t system_time_ms = 0;
+
 void Hardware_Init(void)
 {
 	/*初始化各种外设*/
@@ -308,4 +310,60 @@ void PB7_PowerPath(void)
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;  // 模拟输入
     GPIO_Init(GPIOB, &GPIO_InitStructure);
     
+}
+
+//==========================================================
+//	函数名称：	SysTick_Init
+//
+//	函数功能：	初始化系统滴答定时器（SysTick），用于产生1ms的时间基准
+//
+//	入口参数：	无
+//
+//	返回参数：	无
+//
+//	说明：		
+//==========================================================
+void SysTick_Init(void)
+{
+    if(SysTick_Config(SystemCoreClock / 1000)) {
+        while(1);
+    }
+}
+
+//==========================================================
+//	函数名称：	SysTick_Init
+//
+//	函数功能：	获取系统当前时间（单位：毫秒）
+//
+//	入口参数：	无
+//
+//	返回参数：	system_time_ms：当前时间
+//
+//	说明：		该函数返回自系统启动以来的毫秒计数,
+// 			    系统时间由SysTick_Handler中断服务程序更新
+//==========================================================
+uint32_t Get_System_Time(void)
+{
+    return system_time_ms;
+}
+
+//==========================================================
+//	函数名称：	IWDG_Config
+//
+//	函数功能：	独立看门狗配置
+//
+//	入口参数：	无
+//
+//	返回参数：	无
+//
+//	说明：		1秒不喂狗就死给你看
+//==========================================================
+void IWDG_Config(void)
+{
+	/* (16*2499)/40000 = 1,差不多*/
+	IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable);
+	IWDG_SetPrescaler(IWDG_Prescaler_16);//0.9996秒时间喂狗
+	IWDG_SetReload(2499);//
+	IWDG_ReloadCounter();//喂狗
+	IWDG_Enable();
 }

@@ -34,7 +34,6 @@ SystemState_t CurrentMode = {
 };
 
  /* 全局变量*/
-
 float humidity,temperature = 10;
 uint8_t key_value;
 
@@ -47,20 +46,19 @@ int main(void) {
 	/* 别动这个函数，务必第一个初始化*/
 	PB7_PowerPath();
 	Hardware_Init();
-		
 	unsigned char *dataPtr = NULL;
 
 	UsartPrintf(USART1, "弱电风控系统启动\r\n");
 	
 	/* 网络初始化*/
 	Network_Init(&CurrentMode);
-	
+	IWDG_Config();
 	/* 打印串口log*/
     PrintSystemStatus(&CurrentMode);
 	
 	/* 订阅主题*/
 	OneNet_Subscribe(devSubTopic,1);
-
+	
     while(1)
     {
 		/* 键码获取*/
@@ -68,6 +66,7 @@ int main(void) {
 		
 		/* 读取所有传感器值*/
 		Sensors_UpdateAll(&CurrentMode);
+		//IWDG_ReloadCounter();//喂狗
 		
 		/* 根据按键事件选择对应动作*/
         if(key){KEY_HandleKeyEvent(key,&CurrentMode);}
@@ -80,6 +79,7 @@ int main(void) {
 		
 		/* 平台自动上传数据*/
 		PlatformMode_Handler(&CurrentMode);
+		//IWDG_ReloadCounter();//喂狗
         
         //数据解析
 		dataPtr = ESP8266_GetIPD(2);
@@ -88,6 +88,7 @@ int main(void) {
 		
 		ESP8266_Clear();
 	
+		IWDG_ReloadCounter();//喂狗
 		Delay_ms(10);
     }
 }

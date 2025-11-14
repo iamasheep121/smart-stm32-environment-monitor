@@ -236,7 +236,7 @@ _Bool OneNet_DevLink(void)
 	{
 		ESP8266_SendData(mqttPacket._data, mqttPacket._len);			//上传平台
 		
-		dataPtr = ESP8266_GetIPD(250);									//等待平台响应
+		dataPtr = ESP8266_GetIPD(500);									//等待平台响应
 		if(dataPtr != NULL)
 		{
 			if(MQTT_UnPacketRecv(dataPtr) == MQTT_PKT_CONNACK)

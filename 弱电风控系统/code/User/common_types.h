@@ -205,5 +205,10 @@ void StateMachine_Control(SystemState_t *state, AutoControl_t *auto_ctrl); // �
 void OLED_Display_Simple(const SystemState_t *state);  // OLED简易显示，前期测试版，已弃用
 void Hardware_Init(void);
 void PB7_PowerPath(void);       //硬件bug，第一个初始化，勿动
+
+void SysTick_Init(void);		//留着以后搞时间轮转用，但是这个时间老是被编辑器优化
+uint32_t Get_System_Time(void);
+
+void IWDG_Config(void);         //看门狗配置
 #endif
 
