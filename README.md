@@ -40,7 +40,7 @@ STM32 Environment Monitor 是一个基于STM32微控制器的弱电环境监测�
 | 📶 **无线传输** | WiFi数据上传云端 | ✅ |
 | 🖥️ **可视化** | OLED实时显示 | ✅ |
 | ⚡ **低功耗** | 智能休眠模式 | 🔄 |
-📊
+
 
 ## 🚀 快速开始
 
@@ -107,7 +107,11 @@ smart-stm32-environment-monitor/
 ## 📜 开源协议
 本项目基于 **MIT License** 开源 - 详见 [LICENSE](LICENSE) 文件。
 
----
+
+
+## ▶️演示视频
+
+[点击查看功能演示](https://b23.tv/gXPj1FW)
 
 <div align="center">
 
@@ -118,7 +122,4 @@ smart-stm32-environment-monitor/
 [📚 文档](docs/) | [🐛 报告问题](issues) | [💡 建议功能](issues/new) | [👥 参与贡献](CONTRIBUTING.md)
 
 </div>
-```
-## 演示视频
 
-[点击查看功能演示](https://b23.tv/gXPj1FW)
