@@ -1,26 +1,36 @@
 ```markdown
-# 🚀 STM32 Environment Monitor - 智能环境监测系统
+# 🚀 STM32 Environment Monitor - 弱电风控系统
 
 <div align="center">
 
 ![STM32](https://img.shields.io/badge/STM32-ARM_Cortex--M3-blue?logo=stmicroelectronics)
-![C++](https://img.shields.io/badge/C++-Embedded-%2300599C?logo=c%2B%2B)
-![PlatformIO](https://img.shields.io/badge/PlatformIO-Professional-%23FFBF00?logo=platformio)
+![C](https://img.shields.io/badge/C-Embedded-%2300599C)
+![Keil](https://img.shields.io/badge/Keil-Professional-%2300FF40?logo=keil)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-**✨ 实时环境数据监测 · 🎯 高精度传感器 · 📊 智能数据分析**
+**✨ 实时环境数据监测 · 🎯 高精度传感器 · 📊 智能数据分析 · 🔄 四模式切换**
 
 </div>
 
-## 🌟 项目亮点
+## 🌟 项目简介
+
+STM32 Environment Monitor 是一个基于STM32微控制器的弱电环境监测系统，能够实时监测温湿度、空气质量等环境数据，并通过WiFi模块上传至云端以及微信小程序。
+
+## 四模式切换
+
+- 🤖 **自动模式**：智能控制，自动切换。
+- ✋️ **手动模式**：手动操作，精确控制。
+- ☁️ **云端模式**：云服务，远程控制。
+- ⚙️ **设置模式**：配置选项，自定义设置。
+
 
 ### 🛠️ 核心技术栈
 ```c
 📟 主控芯片：STM32F103C8T6 (Cortex-M3)
-🌡️ 传感器：DHT11温湿度 + MQ系列气体检测  
-📡 通信：ESP8266 WiFi模块 + UART协议
-🎨 显示：0.96寸OLED屏幕 (SSD1306)
-💾 存储：SD卡数据记录
+🌡️ 传感器：SHT30温湿度 + MQ系列气体检测  
+📡 通信：ESP8266 WiFi模块 + UART协议+ Http协议
+🎨 显示：0.96寸OLED屏幕 
+💾 存储：SD卡数据记录（待完成）
 ```
 
 ### 🎯 功能特性
@@ -80,7 +90,7 @@ smart-stm32-environment-monitor/
 // config.h - 系统配置
 #ESP8266_WIFI_INFO      "AT+CWJAP=\"www\",\"www123456\"\r\n"    "wifi名和密码" 
 
-#define PROID			      "o5H719J5gg"     "onenet云平台产品ID"
+#define PROID			  "o5H719J5gg"     "onenet云平台产品ID"
 #define ACCESS_KEY		  "******"         "onenet设备密钥"
 #define DEVICE_NAME		  "Test1"          "设备名称"
 ```
